@@ -20,6 +20,3 @@ This tool is simple to use but powerful in its approach:
 
 This project is continuously evolving. By providing responses to scenarios, you are not only practicing your English but also directly contributing to the development and improvement of our future AI model. Both your feedback and the data we collect are essential for taking this project to the next level.
 
-## **✨ Project Showcase**
-
-**Project Name: whatwouldyoudo.info**
