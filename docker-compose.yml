@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: alpha_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./certs/origin-cert.pem:/etc/ssl/certs/origin-cert.pem
+      - ./certs/origin-key.pem:/etc/ssl/certs/origin-key.pem
+
+
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+    container_name: alpha_backend
+    env_file:
+      - ./backend/.env
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: alpha_frontend
+    expose:  # Change from ports to expose
+      - "80"
+    depends_on:
+      - backend
+    restart: unless-stopped
